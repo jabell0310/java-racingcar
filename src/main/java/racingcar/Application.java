@@ -4,15 +4,29 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Application {
-    public static void main(String[] args)  {
+    static Scanner in = new Scanner(System.in);
+    static int max = Integer.MIN_VALUE;
+    static String carNameList = in.next();
+    static int trial = in.nextInt();
 
-        Scanner in = new Scanner(System.in);
+    static Random random = new Random();
 
-        String carNameList = in.next();
-        int trial = in.nextInt();
+    public static void main(String[] args) {
+
         String[] carName = carNameList.split(",");
 
+        if (exceptionHandling(carName)) return;
 
+        int[] successList = new int[carName.length];
+
+        progress(carName, successList);
+
+        returnMax(successList);
+
+        checkWinner(carName, successList);
+    }
+
+    private static boolean exceptionHandling(String[] carName) {
         try {
             // 예외 처리: 입력값이 0 이하인 경우
             if (trial <= 0) {
@@ -25,36 +39,33 @@ public class Application {
                     throw new IllegalArgumentException("차 이름은 5글자 이하여야 합니다.");
                 }
             }
-        }
-
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("예외 발생: " + e.getMessage());
-            return;
+            return true;
         }
+        return false;
+    }
 
-
-        Random random = new Random();
-        int[] successList = new int[carName.length];
-
-
-
+    public static void progress(String[] carName, int[] successList) {
         for (int i = 0; i < trial; i++) {
             for (int j = 0; j < carName.length; j++) {
                 int isSuccess = random.nextInt(10);
                 if (isSuccess >= 4)
                     successList[j]++;
-                //System.out.print(i + "회: " + successList[j] + " ");
-                //System.out.println();
                 System.out.println(carName[j] + " : " + "-".repeat(successList[j]));
             }
-
             System.out.println();
         }
+    }
 
-        int max = Integer.MIN_VALUE;
+
+    public static void returnMax(int[] successList) {
         for (int successes : successList)
             if (max < successes) max = successes;
+    }
 
+
+    public static void checkWinner(String[] carName, int[] successList) {
         boolean isFirstWinner = true;
         for (int i = 0; i < carName.length; i++) {
             if (successList[i] == max) {
@@ -65,8 +76,11 @@ public class Application {
                 System.out.print(carName[i]);
             }
         }
-
-
-
     }
+
+
 }
+
+
+
+

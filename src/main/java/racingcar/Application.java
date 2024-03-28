@@ -1,15 +1,18 @@
 package racingcar;
 
+
 import java.util.Random;
 import java.util.Scanner;
+import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
-    static Scanner in = new Scanner(System.in);
-    static int max = Integer.MIN_VALUE;
-    static String carNameList = in.next();
-    static int trial = in.nextInt();
 
-    static Random random = new Random();
+    static int max = Integer.MIN_VALUE;
+    static String carNameList = Console.readLine();
+    static int trial = Integer.parseInt(Console.readLine());
+
+
 
     public static void main(String[] args) {
 
@@ -49,7 +52,7 @@ public class Application {
     public static void progress(String[] carName, int[] successList) {
         for (int i = 0; i < trial; i++) {
             for (int j = 0; j < carName.length; j++) {
-                int isSuccess = random.nextInt(10);
+                int isSuccess = Randoms.pickNumberInRange(0, 9);
                 if (isSuccess >= 4)
                     successList[j]++;
                 System.out.println(carName[j] + " : " + "-".repeat(successList[j]));

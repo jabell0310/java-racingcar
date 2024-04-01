@@ -11,6 +11,7 @@ public class CheckResult {
 
   public static void checkWinner(String[] carName, int[] successList) {
     boolean isFirstWinner = true;
+    System.out.print("최종 우승자 : ");
     for (int i = 0; i < carName.length; i++) {
       if (successList[i] == max) {
         if (!isFirstWinner) {

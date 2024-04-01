@@ -2,10 +2,10 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import static racingcar.Application.trial;
+
 
 public class Running {
-  public static void progress(String[] carName, int[] successList) {
+  public static void progress(String[] carName,int trial, int[] successList) {
     for (int i = 0; i < trial; i++) {
       for (int j = 0; j < carName.length; j++) {
         int isSuccess = Randoms.pickNumberInRange(0, 9);

@@ -2,7 +2,6 @@ package racingcar;
 
 
 
-import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
 import static racingcar.CheckResult.checkWinner;
@@ -13,20 +12,24 @@ import static racingcar.Running.progress;
 public class Application {
 
     static int max = Integer.MIN_VALUE;
-    static String carNameList = Console.readLine();
-    static int trial = Integer.parseInt(Console.readLine());
-
 
 
     public static void main(String[] args) {
+        String carNameList = Console.readLine();
+
+        int trial = Integer.parseInt(Console.readLine());
+
 
         String[] carName = carNameList.split(",");
 
-        if (exceptionHandling(carName)) return;
+
+        System.out.println(carName.length);
+
+        if (exceptionHandling(carName ,trial)) return;
 
         int[] successList = new int[carName.length];
 
-        progress(carName, successList);
+        progress(carName, trial, successList);
 
         returnMax(successList);
 

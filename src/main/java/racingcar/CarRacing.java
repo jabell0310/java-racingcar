@@ -52,7 +52,7 @@ public class CarRacing implements Car{
     //최댓값을 반환하여 최종 우승자 결정!
     @Override
     public void checkWinner (String[]carName, int[] successList){
-        int max = returnMax(Integer.MIN_VALUE ,successList);
+        int max = returnMax(Integer.MIN_VALUE, successList);
         boolean isFirstWinner = true;
         System.out.print("최종 우승자 : ");
         for (int i = 0; i < carName.length; i++) {

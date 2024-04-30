@@ -41,8 +41,11 @@ public class CarRacing implements Car{
 
     //최댓값 조작하지 않도록 정보 은닉
     private int returnMax (int max, int[] successList){
-        for (int successes : successList)
-            if (max < successes) max = successes;
+        for (int successes : successList) {
+            if (max < successes) {
+                max = successes;
+            }
+        }
         return max;
     }
 
